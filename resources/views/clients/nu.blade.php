@@ -21,14 +21,14 @@
         <!-- The slideshow/carousel -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/banner10.png') }}" alt="" class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner_women5.jpg') }}" alt="Los Angeles" class="d-block w-100 h-100">
             </div>
             <div class="carousel-item">
-                <img style="height: 100%;" src="{{ asset('images/banner8.png') }}" alt=""
+                <img style="height: 100%;" src="{{ asset('images/banner_women.jpg') }}" alt="Chicago"
                     class="d-block w-100 h-100">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/banner11.png') }}" alt="" class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner_women3.jpg') }}" alt="New York" class="d-block w-100 h-100">
             </div>
         </div>
 

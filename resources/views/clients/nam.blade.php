@@ -21,14 +21,14 @@
         <!-- The slideshow/carousel -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/banner10.png') }}" alt="" class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner_men.jpg') }}" alt="Los Angeles" class="d-block w-100 h-100">
             </div>
             <div class="carousel-item">
-                <img style="height: 100%;" src="{{ asset('images/banner8.png') }}" alt=""
+                <img style="height: 100%;" src="{{ asset('images/banner_men2.jpg') }}" alt="Chicago"
                     class="d-block w-100 h-100">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/banner11.png') }}" alt="" class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner_men3.jpg') }}" alt="New York" class="d-block w-100 h-100">
             </div>
         </div>
 
@@ -68,7 +68,7 @@
     </div>
     <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">DON'T MISS</h1>
     <section class="banner_video container mt-4">
-        <video style="width: 100%;" controls autoplay loop src={{ asset('images/b.mp4') }}></video>
+        <video style="width: 100%;" controls autoplay loop src={{ asset('images/a.mp4') }}></video>
     </section>
     <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">WHAT'S HOT</h1>
     <div class="row">
