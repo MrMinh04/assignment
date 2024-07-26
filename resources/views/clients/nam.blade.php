@@ -99,17 +99,17 @@
     <section class="d-flex justify-content-between mb-5">
         <div class="position-relative">
             <img style="height: 358px;" src="{{ asset('images/Rectangle 8.png') }}" alt="">
-            <a href=""><button style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
+            <a href="{{route('nu')}}"><button style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
                     class="position-absolute boder rounded-pill fw-bolder">Women's</button></a>
         </div>
         <div class="position-relative">
             <img style="height: 358px;" src="{{ asset('images/Rectangle 9.png') }}" alt="">
-            <a href=""><button style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
+            <a href="{{route('nam')}}"><button style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
                     class="position-absolute boder rounded-pill fw-bolder">Men's</button></a>
         </div>
         <div class="position-relative">
             <img style="height: 358px;" src="{{ asset('images/Rectangle 10.png') }}" alt="">
-            <a href=""><button
+            <a href="{{route('tre_em')}}"><button
                     style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
                     class="position-absolute boder rounded-pill fw-bolder">Kid's</button></a>
         </div>

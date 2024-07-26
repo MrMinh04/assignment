@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $title = "Trang chủ";
-        $listSanPham = SanPham::get();
+        $listSanPham = SanPham::take(8)->get();
         return view('clients.home', compact('title','listSanPham'));
     }
 

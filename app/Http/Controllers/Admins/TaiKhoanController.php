@@ -79,8 +79,19 @@ class TaiKhoanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        if ($request->isMethod('DELETE')) {
+    
+            $taiKhoan = TaiKhoan::query()->findOrFail($id);
+
+            $taiKhoan->delete();
+
+            if ($taiKhoan->hinh_anh && Storage::disk('public')->exists($taiKhoan->hinh_anh)) {
+                Storage::disk('public')->delete($taiKhoan->hinh_anh);
+            }
+
+            return redirect()->route('tai_khoan.index')->with('success', 'Xóa sản phầm thành công!');
+        }
     }
 }
