@@ -20,7 +20,7 @@ class ClientController extends Controller
     }
     public function san_pham_tre_em(){
         $title = "Giày Trẻ em";
-        $listSanPham = SanPham::where('danh_muc_id', 5)->take(4)->get();
+        $listSanPham = SanPham::where('danh_muc_id', 3)->take(4)->get();
         return view('clients.tre_em', compact('title','listSanPham'));
     }
     public function san_pham_giam_gia(){
@@ -31,7 +31,13 @@ class ClientController extends Controller
     public function san_pham_chi_tiet(string $id){
         $title = "Chi tiết sản phẩm";
         $listSanPham = SanPham::where('danh_muc_id', 4)->get();
-        $sanPham = SanPham::findOrFail($id);
+        
+        // $sanPham = SanPham::with('hinh_anh_san_pham')->findOrFail($id);
+        $sanPham = SanPham::with(['hinh_anh_san_pham' => function ($query) {
+            $query->take(4); // Lấy 4 ảnh đầu tiên
+        }])->findOrFail($id);
+    
+
         return view('clients.san_pham_chi_tiet', compact('title','listSanPham', 'sanPham'));
     }
 }

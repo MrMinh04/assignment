@@ -5,18 +5,38 @@
     {{-- Hiển thị dữ liệu trong blade --}}
     {{ $title }}
 @endsection
+@section('css')
+<style>
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        max-width: 400px; /* hoặc bất kỳ kích thước tối đa nào bạn muốn */
+    }
+    .image-grid img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1/1; /* Đảm bảo hình ảnh vuông */
+    }
+</style>
+@endsection
 
 @section('content')
     <div class="row g-0 justify-content-center">
         <div class="col-8">
-            <div class="mb-1">
-                <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover" src="{{asset('images/Air Force 1.png')}}" alt="">
-                <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover" src="{{asset('images/Air Force 1_2.png')}}" alt="">
+            <div class="image-grid">
+                @foreach ($sanPham->hinh_anh_san_pham as $hinhAnh)
+                    <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover" src="{{ Storage::url($hinhAnh->link_hinh_anh) }}" alt="Hình ảnh sản phẩm">
+                @endforeach
             </div>
-            <div class="mb-4">
-                <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover" src="{{asset('images/Air Force 1_3.png')}}" alt="">
-                <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover" src="{{asset('images/Air Force 1_4.png')}}" alt="">
-            </div>
+            
+            {{-- <div class="mb-4">
+                <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover"
+                    src="{{ asset('images/Air Force 1_3.png') }}" alt="">
+                <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover"
+                    src="{{ asset('images/Air Force 1_4.png') }}" alt="">
+            </div> --}}
         </div>
         <div class="col-3">
 
@@ -62,7 +82,7 @@
                     </div>
                 </div>
                 <div class="text-end">
-                    <a class="w-100" href="{{route('san_pham_chi_tiet', $item->id)}}">
+                    <a class="w-100" href="{{ route('san_pham_chi_tiet', $item->id) }}">
                         <button class="btn btn-dark w-50 btn-sm rounded-0 " style="height: 30px;">FIND OUT MORE</button>
                     </a>
                 </div>

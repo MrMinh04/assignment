@@ -17,6 +17,12 @@ class SanPham extends Model
     {
         return $this->belongsTo(DanhMuc::class, 'danh_muc_id', 'id');
     }
+    // app/Models/SanPham.php
+public function hinh_anh_san_pham()
+{
+    return $this->hasMany(HinhAnhSanPham::class, 'san_pham_id', 'id');
+}
+
     
     protected $fillable = [
         'ten_san_pham',
