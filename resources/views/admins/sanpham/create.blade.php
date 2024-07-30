@@ -110,7 +110,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div>
+                    <div style="width: 40%;" class="ms-5">
                         <label for="" class="form-label">Album hình ảnh</label>
                         <i id="add-row" class="fa-solid fa-plus ms-3" style="cursor: pointer;"></i>
                         <table class="table align-middle table-nowrap mb-0">
@@ -119,7 +119,7 @@
                                     <td class="d-flex align-items-center">
                                         <img class="pe-3"
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0Wr3oWsq6KobkPqznhl09Wum9ujEihaUT4Q&s"
-                                            id="preview_0" alt="Hình ảnh sản phẩm" width="100px">
+                                            id="preview_0" alt="Hình ảnh sản phẩm" width="80px">
                                         <input type="file" class="form-control" name="list_hinh_anh[id_0]"
                                             onchange="previewImage(this, 0)">
 
@@ -170,7 +170,7 @@
                     <td class="d-flex align-items-center">
                         <img class="pe-3"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0Wr3oWsq6KobkPqznhl09Wum9ujEihaUT4Q&s"
-                            id="preview_${rowCount}" alt="Hình ảnh sản phẩm" width="50px">
+                            id="preview_${rowCount}" alt="Hình ảnh sản phẩm" width="80px">
                         <input type="file" class="form-control" name="list_hinh_anh[id_${rowCount}]"
                             onchange="previewImage(this, ${rowCount})">
 
