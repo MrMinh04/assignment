@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\Admins\TaiKhoanController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients\ClientController;
 use App\Http\Controllers\Clients\HomeController;
+use App\Http\Middleware\CheckRouteAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +24,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('nam', [ClientController::class, 'san_pham_nam'])->name('nam');
-Route::get('nu', [ClientController::class, 'san_pham_nu'])->name('nu');
-Route::get('tre_em', [ClientController::class, 'san_pham_tre_em'])->name('tre_em');
-Route::get('giam_gia', [ClientController::class, 'san_pham_giam_gia'])->name('giam_gia');
-Route::get('/san_pham_chi_tiet/{id}', [ClientController::class, 'san_pham_chi_tiet'])->name('san_pham_chi_tiet');
+Route::get('login', [AuthController::class, 'showFormLogin']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'showFormRegister']);
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::resource('san_pham', SanPhamController::class);
-Route::resource('danh_muc', DanhMucController::class);
-Route::resource('tai_khoan', TaiKhoanController::class);
-Route::resource('home', HomeController::class);
+// Route::get('nam', [ClientController::class, 'san_pham_nam'])->name('nam');
+// Route::get('nu', [ClientController::class, 'san_pham_nu'])->name('nu');
+// Route::get('tre_em', [ClientController::class, 'san_pham_tre_em'])->name('tre_em');
+// Route::get('giam_gia', [ClientController::class, 'san_pham_giam_gia'])->name('giam_gia');
+// Route::get('/san_pham_chi_tiet/{id}', [ClientController::class, 'san_pham_chi_tiet'])->name('san_pham_chi_tiet');
+
+// Route::resource('san_pham', SanPhamController::class)->middleware(['auth', 'auth.admin']);
+// Route::resource('danh_muc', DanhMucController::class)->middleware(['auth', 'auth.admin']);
+// Route::resource('tai_khoan', TaiKhoanController::class)->middleware(['auth', 'auth.admin']);
+// Route::resource('home', HomeController::class)->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('home', HomeController::class);
+    Route::middleware('auth')->group(function () {
+        Route::resource('san_pham', SanPhamController::class);
+        Route::resource('danh_muc', DanhMucController::class);
+        Route::resource('tai_khoan', TaiKhoanController::class);
+
+        Route::get('nam', [ClientController::class, 'san_pham_nam'])->name('nam');
+        Route::get('nu', [ClientController::class, 'san_pham_nu'])->name('nu');
+        Route::get('tre_em', [ClientController::class, 'san_pham_tre_em'])->name('tre_em');
+        Route::get('giam_gia', [ClientController::class, 'san_pham_giam_gia'])->name('giam_gia');
+        Route::get('/san_pham_chi_tiet/{id}', [ClientController::class, 'san_pham_chi_tiet'])->name('san_pham_chi_tiet');
+    });
+});

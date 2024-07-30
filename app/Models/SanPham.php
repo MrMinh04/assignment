@@ -13,6 +13,10 @@ class SanPham extends Model
     // use HasFactory;
     // use SoftDeletes;
     protected $table = 'san_phams';
+    public function danh_muc()
+    {
+        return $this->belongsTo(DanhMuc::class, 'danh_muc_id', 'id');
+    }
     protected $fillable = [
         'ten_san_pham',
         'gia_san_pham',

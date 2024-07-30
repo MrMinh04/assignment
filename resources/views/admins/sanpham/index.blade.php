@@ -42,6 +42,7 @@
                     <th class="vertical">Lượt xem</th>
                     <th class="vertical">Ngày nhập</th>
                     <th class="vertical">Mô tả</th>
+                    <th class="vertical">Danh mục</th>
                     <th class="vertical">Trạng thái</th>
                     <th style="width: 1px;" class="text-nowrap vertical">
                         <a style="width: 100%;" class="btn btn-success btn-sm" href="{{ route('san_pham.create') }}">Thêm</a>
@@ -54,12 +55,13 @@
                         <td>{{ $index + 1 }}</td>
                         <td><img src="{{ Storage::url($item->hinh_anh) }}" alt="Hình ảnh sản phẩm" width="120px"></td>
                         <td class="vertical">{{ $item->ten_san_pham }}</td>
-                        <td class="vertical">{{ $item->gia_san_pham }}</td>
-                        <td class="vertical">{{ $item->gia_khuyen_mai }}</td>
+                        <td class="vertical">{{ number_format($item->gia_san_pham) }}</td>
+                        <td class="vertical">{{ number_format($item->gia_khuyen_mai) }}</td>
                         <td class="vertical">{{ $item->so_luong }}</td>
                         <td class="vertical">{{ $item->luot_xem }}</td>
                         <td class="vertical">{{ $item->ngay_nhap }}</td>
                         <td class="vertical">{{ $item->mo_ta }}</td>
+                        <td class="vertical">{{ $item->danh_muc->ten_danh_muc }}</td>
                         <td class="vertical">{{ $item->trang_thai == 0 ? 'Hết hàng' : 'Còn hàng' }}</td>
                         <td class="cnang" style="width: 1px;" class="text-nowrap">
                             <a class="btn btn-warning btn-sm" style="margin: 10px; margin-top: 20px;" href="{{route('san_pham.edit', $item->id)}}">Sửa</a>

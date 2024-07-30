@@ -14,7 +14,7 @@
                 @method('PUT')
                 <div class="mb-3">
                     <label for="" class="form-label">Họ và tên</label>
-                    <input type="text" class="form-control" value="{{ $taiKhoan->ho_ten }}" name="ho_ten" placeholder="Nhập tên sản phẩm" disabled>
+                    <input type="text" class="form-control" value="{{ $taiKhoan->name }}" name="name" placeholder="Nhập tên sản phẩm" disabled>
                 </div>
 
                 <div class="mb-3">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Ngày sinh</label>
-                    <input type="text" class="form-control" value="{{ $taiKhoan->ngay_sinh }}" name="ngay_sinh" placeholder="Nhập tên sản phẩm" disabled>
+                    <input type="text" class="form-control" value="{{ $taiKhoan->ngay_sinh }}" name="ngay_sinh" placeholder="Chưa có ảnh đại diện" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Email</label>
@@ -34,25 +34,16 @@
                     <input type="text" class="form-control" value="{{ $taiKhoan->so_dien_thoai }}" name="so_dien_thoai" placeholder="Nhập tên sản phẩm" disabled>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Giới tính</label>
-                    <select name="gioi_tinh" id="" disabled>
-                        <option value="" selected>Chọn giới tính</option>
-                        <option value="1">Nam</option>
-                        <option value="2">Nữ</option>
-                        
-                    </select>
-                </div>
-                <div class="mb-3">
                     <label for="" class="form-label">Địa chỉ</label>
                     <input type="text" class="form-control" value="{{ $taiKhoan->dia_chi }}" name="dia_chi" placeholder="Nhập tên địa chỉ" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Mật khẩu</label>
-                    <input type="text" class="form-control" value="{{ $taiKhoan->mat_khau }}" name="mat_khau" placeholder="Nhập tên mật khẩu" disabled>
+                    <input type="text" class="form-control" value="{{ $taiKhoan->password }}" name="password" placeholder="Nhập tên mật khẩu" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Chức vụ</label>
-                    <select name="chuc_vu_id" id="">
+                    <select name="role" id="">
                         <option value="" selected>Chọn chức vụ</option>
                         @foreach ($listChucVu as $item)
                         <option value="{{$item->id}}">{{$item->ten_chuc_vu}}</option>

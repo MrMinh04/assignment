@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('ghi_chu');
             $table->unsignedBigInteger('phuong_thuc_thanh_toan_id');
             $table->boolean('trang_thai')->default(0);
-            $table->foreign('tai_khoan_id')->references('id')->on('tai_khoans')->onDelete('cascade');
+            $table->foreign('tai_khoan_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('phuong_thuc_thanh_toan_id')->references('id')->on('phuong_thuc_thanh_toans')->onDelete('cascade');
             $table->timestamps();
         });

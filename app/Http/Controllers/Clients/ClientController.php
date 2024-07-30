@@ -20,7 +20,7 @@ class ClientController extends Controller
     }
     public function san_pham_tre_em(){
         $title = "Giày Trẻ em";
-        $listSanPham = SanPham::where('danh_muc_id', 3)->get();
+        $listSanPham = SanPham::where('danh_muc_id', 5)->take(4)->get();
         return view('clients.tre_em', compact('title','listSanPham'));
     }
     public function san_pham_giam_gia(){

@@ -19,8 +19,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'anh_dai_dien',
+        'ngay_sinh',
+        'so_dien_thoai',
+        'dia_chi',
         'email',
         'password',
+        'role',
+        'trang_thai',
     ];
 
     /**
@@ -40,5 +46,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 }

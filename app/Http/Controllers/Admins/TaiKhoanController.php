@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use App\Models\ChucVu;
-use App\Models\TaiKhoan;
+// use App\Models\TaiKhoan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,7 @@ class TaiKhoanController extends Controller
     public function index()
     {
         $title = "Danh sách tài khoản";
-        $listTaiKhoan = TaiKhoan::get();
+        $listTaiKhoan = User::get();
         return view('admins.taikhoan.index', compact('title', 'listTaiKhoan'));
     }
 
@@ -51,7 +52,7 @@ class TaiKhoanController extends Controller
     {
         $title = "Sửa tài khoản";
         $listChucVu = ChucVu::get();
-        $taiKhoan = TaiKhoan::findOrFail($id);
+        $taiKhoan = User::findOrFail($id);
         return view('admins.taikhoan.update', compact('title', 'taiKhoan', 'listChucVu'));
     }
 
@@ -62,7 +63,7 @@ class TaiKhoanController extends Controller
     {
         if($request->isMethod('PUT')){
             $params = $request->except('_token', '_method');
-            $taiKhoan = TaiKhoan::findOrFail($id);
+            $taiKhoan = User::findOrFail($id);
             if($request->hasFile('anh_dai_dien')){
                 if($taiKhoan->anh_dai_dien){
                     Storage::disk('public')->delete($taiKhoan->anh_dai_dien);
@@ -83,7 +84,7 @@ class TaiKhoanController extends Controller
     {
         if ($request->isMethod('DELETE')) {
     
-            $taiKhoan = TaiKhoan::query()->findOrFail($id);
+            $taiKhoan = User::query()->findOrFail($id);
 
             $taiKhoan->delete();
 

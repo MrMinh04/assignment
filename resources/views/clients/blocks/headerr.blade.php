@@ -31,9 +31,11 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">Account</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Logout</a>
-            </li>
+            <form action="{{route('logout')}}" method="post">
+                @csrf
+                {{-- {{Auth::user()->name}} --}}
+                <button type="submit">Logout</button>
+            </form>
         </ul>
     </div>
 
