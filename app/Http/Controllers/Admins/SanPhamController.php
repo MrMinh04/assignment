@@ -6,6 +6,7 @@ use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SanPhamRequest;
 use Illuminate\Support\Facades\Storage;
 
 class SanPhamController extends Controller
@@ -35,7 +36,7 @@ class SanPhamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SanPhamRequest $request)
     {
         if($request->isMethod('POST')){
             $params = $request->except('_token');
@@ -45,7 +46,23 @@ class SanPhamController extends Controller
                 $filename = null;
             };
             $params['hinh_anh'] = $filename;
-            SanPham::create($params);
+            $sanPham = SanPham::query()->create($params);
+
+            $sanPhamId = $sanPham->id;
+
+            if($request->hasFile('list_hinh_anh')){
+                foreach($request->file('list_hinh_anh') as $image){
+                    if($image){
+                        $path = $image->store('upload/hinhanhsanpham/id' .$sanPhamId, 'public');
+                        $sanPham->hinhAnhSanPham()->create(
+                            [
+                            'san_pham_id' => $sanPhamId,
+                            'link_hinh_anh' => $path
+                            ]
+                        );
+                    }
+                }
+            }
             return redirect()->route('san_pham.index')->with('success', 'Thêm sản phầm thành công!');
         }
     }

@@ -34,7 +34,7 @@
             <form action="{{route('logout')}}" method="post">
                 @csrf
                 {{-- {{Auth::user()->name}} --}}
-                <button type="submit">Logout</button>
+                <button class="nav-link text-white" type="submit">Logout</button>
             </form>
         </ul>
     </div>
