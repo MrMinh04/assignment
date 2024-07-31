@@ -84,8 +84,22 @@ class GioHangController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        if ($request->isMethod('DELETE')) {
+            $userId = auth()->user()->id;
+            $gioHang = GioHang::where('tai_khoan_id', $userId)->first();
+            if (!$gioHang) {
+                return redirect()->route('gio_hang.index')->with('error', 'Giỏ hàng không tồn tại.');
+            }
+            $chiTietGioHang = ChiTietGioHang::where('gio_hang_id', $gioHang->id)
+                                            ->where('san_pham_id', $id)
+                                            ->first();
+            if ($chiTietGioHang) {
+                $chiTietGioHang->delete();
+            }
+
+            return redirect()->route('gio_hang.index')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
+        }
     }
 }

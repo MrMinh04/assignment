@@ -109,9 +109,12 @@
                         <h5>Số lượng: {{ $item->so_luong }}</h5><br>
                         <h4 style="border-bottom: 1px solid gray;">Thành tiền: {{ $item->san_pham->gia_san_pham * $item->so_luong }} VND</h4>
                     </div>
-                    <div>
-                        <i style="font-size: 20px; cursor: pointer" class="fa-solid fa-delete-left" onclick="xoaSanPham(this)"></i>
-                    </div>   
+                    <form style="margin: 10px" action="{{ route('gio_hang.destroy', $item->san_pham_id) }}" method="POST"
+                        class="d-inline" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>  
                     @php
                         // Cập nhật tổng tiền cho mỗi sản phẩm
                         $total += $item->san_pham->gia_san_pham * $item->so_luong;
@@ -121,7 +124,12 @@
                 
             </div>
             @else
-                <p>Giỏ hàng hiện đang trống.</p>
+                <div style="">
+                    <img width="600px" src="{{asset('images/cart_rong.png')}}" alt="">
+                </div>
+                @php
+                    $total = 0;
+                @endphp
             @endif
         </div>
         <div class="boxphai">
