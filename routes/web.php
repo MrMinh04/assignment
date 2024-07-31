@@ -5,6 +5,7 @@ use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\Admins\TaiKhoanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients\ClientController;
+use App\Http\Controllers\Clients\GioHangController;
 use App\Http\Controllers\Clients\HomeController;
 use App\Http\Middleware\CheckRouteAdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::resource('home', HomeController::class);
+    Route::resource('gio_hang', GioHangController::class);
     Route::middleware('auth')->group(function () {
         Route::resource('san_pham', SanPhamController::class);
         Route::resource('danh_muc', DanhMucController::class);

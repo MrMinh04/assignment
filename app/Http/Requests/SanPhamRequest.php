@@ -25,7 +25,7 @@ class SanPhamRequest extends FormRequest
             'ten_san_pham' => 'required|max:255',
             'gia_san_pham' => 'required|numeric',
             'gia_khuyen_mai' => 'required|numeric|lt:gia_san_pham',
-            'hinh_anh' => 'required|image|mimes:jpg,jpeg,png,gif',
+            'hinh_anh' => 'required|image|mimes:jpg,jpeg,png,gif,webp',
             'so_luong' => 'required|integer|min:0',
             'ngay_nhap' => 'required|date',
             'mo_ta' => 'required',

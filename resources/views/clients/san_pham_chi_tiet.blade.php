@@ -6,20 +6,23 @@
     {{ $title }}
 @endsection
 @section('css')
-<style>
-    .image-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5px;
-        max-width: 400px; /* hoặc bất kỳ kích thước tối đa nào bạn muốn */
-    }
-    .image-grid img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        aspect-ratio: 1/1; /* Đảm bảo hình ảnh vuông */
-    }
-</style>
+    <style>
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            max-width: 400px;
+            /* hoặc bất kỳ kích thước tối đa nào bạn muốn */
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+            /* Đảm bảo hình ảnh vuông */
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -27,10 +30,11 @@
         <div class="col-8">
             <div class="image-grid">
                 @foreach ($sanPham->hinh_anh_san_pham as $hinhAnh)
-                    <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover" src="{{ Storage::url($hinhAnh->link_hinh_anh) }}" alt="Hình ảnh sản phẩm">
+                    <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover"
+                        src="{{ Storage::url($hinhAnh->link_hinh_anh) }}" alt="Hình ảnh sản phẩm">
                 @endforeach
             </div>
-            
+
             {{-- <div class="mb-4">
                 <img style="height: 349.99px; width: 349.99px;" class="object-fit-cover"
                     src="{{ asset('images/Air Force 1_3.png') }}" alt="">
@@ -59,10 +63,24 @@
                             ? 'Trẻ em'
                             : 'Giảm giá')) }}
             </h3>
-            <div class="mt-4">
+            {{-- <div class="mt-4">
                 <button class="btn btn-dark w-100 rounded-pill" style="height: 65px;" ng-click="onClickSubmit()">Add to Cart
                     <i class="fa-solid fa-cart-plus"></i></button>
-            </div>
+            </div> --}}
+            <form class="mt-4" action="{{route('gio_hang.store')}}" class="form" method="post">
+                @csrf
+                <label class="form-label">Số lượng</label>
+                <input type="number" style="width: 200px;" class="form-control @error('ten_san_pham') is-invalid @enderror"
+                    name="so_luong" placeholder="Nhập số lượng mua">
+                @error('so_luong')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+                {{-- <input type="hidden" name="gio_hang_id">
+                <input type="hidden" name="gio_hang_id"> --}}
+                <input type="hidden" name="san_pham_id" value="{{ $sanPham->id }}">               
+                {{-- <input type="hidden" name="don_gia" value="{{ $sanPham->gia_san_pham }}"> --}}
+                <button class="btn btn-dark w-100 rounded-pill mt-4" style="height: 65px;" type="submit">Thêm vào giỏ hàng <i class="fa-solid fa-cart-plus"></i></button>
+            </form>
         </div>
     </div>
     <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">NEW PRODUCT</h1>
