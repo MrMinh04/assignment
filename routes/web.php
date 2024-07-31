@@ -1,14 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BinhLuanController;
+use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Admins\DanhMucController;
 use App\Http\Controllers\Admins\SanPhamController;
-use App\Http\Controllers\Admins\TaiKhoanController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients\ClientController;
-use App\Http\Controllers\Clients\GioHangController;
-use App\Http\Controllers\Clients\HomeController;
 use App\Http\Middleware\CheckRouteAdminMiddleware;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admins\TaiKhoanController;
+use App\Http\Controllers\Clients\GioHangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 // Route::resource('home', HomeController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/binh_luan', [BinhLuanController::class, 'store'])->name('binh_luan.store');
     Route::resource('home', HomeController::class);
     Route::resource('gio_hang', GioHangController::class);
     Route::middleware('auth')->group(function () {
