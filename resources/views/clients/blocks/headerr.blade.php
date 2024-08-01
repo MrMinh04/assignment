@@ -82,7 +82,7 @@
                                         <li>
                                             <a href="{{ route('gio_hang.index') }}" class="minicart-btn">
                                                 <i class="pe-7s-shopbag"></i>
-                                                <div class="notification">2</div>
+                                                <div class="notification"></div>
                                             </a>
                                         </li>
                                     </ul>
