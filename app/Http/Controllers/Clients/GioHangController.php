@@ -54,7 +54,7 @@ class GioHangController extends Controller
             'so_luong' => $so_luong,
         ]);
 
-        return redirect()->route('san_pham.index')->with('success', 'Thêm sản phầm thành công!');
+        return redirect()->route('gio_hang.index')->with('success', 'Thêm sản phầm thành công!');
     }
 
     /**

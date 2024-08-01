@@ -140,7 +140,7 @@
             <h4>Thành tiền sản phẩm: <b>{{ number_format($total) }} VND</b></h4><br>
             <h4>Phí vận chuyển: <b>MIỄN PHÍ</b></h4><br>
             <h4>Tổng cộng: <b>{{ number_format($total) }} VND</b></h4><br>
-            <a href=""><button class="checkout">Guest Checkout <i class='bx bxs-cart'></i></button></a>
+            <a href="#"><button class="checkout">Guest Checkout <i class='bx bxs-cart'></i></button></a>
         </div>
     </div>
 @endsection

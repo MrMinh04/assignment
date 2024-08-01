@@ -47,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/binh_luan', [BinhLuanController::class, 'store'])->name('binh_luan.store');
     Route::resource('home', HomeController::class);
     Route::resource('gio_hang', GioHangController::class);
+
+    
+
     Route::middleware('auth')->group(function () {
         Route::resource('san_pham', SanPhamController::class);
         Route::resource('danh_muc', DanhMucController::class);
