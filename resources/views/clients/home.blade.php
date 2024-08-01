@@ -1,120 +1,115 @@
 @extends ('layouts.client')
 
-
 @section('title')
-    {{-- Hiển thị dữ liệu trong blade --}}
     {{ $title }}
 @endsection
 
 @section('content')
-    {{-- <h6>{{ userId }}</h6> --}}
     <!-- Carousel -->
     <div id="demo" class="carousel slide overflow-hidden" data-bs-ride="carousel" style="height: 480px;">
-
         <!-- Indicators/dots -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
 
         <!-- The slideshow/carousel -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/banner10.png') }}" alt="" class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner10.png') }}" class="d-block w-100 h-100" alt="Banner 1">
             </div>
             <div class="carousel-item">
-                <img style="height: 100%;" src="{{ asset('images/banner8.png') }}" alt=""
-                    class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner8.png') }}" class="d-block w-100 h-100" alt="Banner 2">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/banner11.png') }}" alt="" class="d-block w-100 h-100">
+                <img src="{{ asset('images/banner11.png') }}" class="d-block w-100 h-100" alt="Banner 3">
             </div>
         </div>
 
         <!-- Left and right controls/icons -->
         <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
         </button>
     </div>
 
-    <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">NEW PRODUCT</h1>
-    <!-- Sản phẩm -->
-    <div class="row">
-        @foreach ($listSanPham as $item)
-            <div class="col-3 mb-5">
-                <div class="border-black border-top border-bottom overflow-hidden mt-3 mb-3" style="height: 380px;">
-                    <div style="height: 70px;">
-                        <h1 style="margin: 0px;" class="h5 d-flex align-items-start mb-2 mt-2">{{ $item->ten_san_pham }}
-                        </h1>
-                        <div style="height: 30px; font-size: 14px;" class="text-uppercase text-end text-danger-emphasis">
-                            {{ $item->gia_san_pham }} VNĐ</div>
-                    </div>
-                    <div class="bg-light d-flex align-items-center justify-content-center overflow-hidden mt-0">
-                        <img src="{{ Storage::url($item->hinh_anh) }}" style="height:261px; width: 261px;"
-                            class="object-fit-cover" alt="">
+    <!-- New Products Section -->
+    <div class="container my-5">
+        <h1 class="text-center fw-bold mb-4">New Products</h1>
+        <div class="row">
+            @foreach ($listSanPham as $item)
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <img src="{{ Storage::url($item->hinh_anh) }}" class="card-img-top img-fluid" alt="{{ $item->ten_san_pham }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->ten_san_pham }}</h5>
+                            <p class="card-text text-danger">{{ $item->gia_san_pham }} VNĐ</p>
+                            <a href="{{ route('san_pham_chi_tiet', $item->id) }}" class="btn btn-dark w-100">Find Out More</a>
+                        </div>
                     </div>
                 </div>
-                <div class="text-end">
-                    <a class="w-100" href="{{route('san_pham_chi_tiet', $item->id)}}">
-                        <button class="btn btn-dark w-50 btn-sm rounded-0 " style="height: 30px;">FIND OUT MORE</button>
-                    </a>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
-    <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">DON'T MISS</h1>
-    <section class="banner_video container mt-4">
-        <video style="width: 100%;" controls autoplay loop src={{ asset('images/b.mp4') }}></video>
-    </section>
-    <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">WHAT'S HOT</h1>
-    <div class="row">
-        @foreach ($listSanPham as $item)
-            <div class="col-3 mb-5">
-                <div class="border-black border-top border-bottom overflow-hidden mt-3 mb-3" style="height: 380px;">
-                    <div style="height: 70px;">
-                        <h1 style="margin: 0px;" class="h5 d-flex align-items-start mb-2 mt-2">{{ $item->ten_san_pham }}
-                        </h1>
-                        <div style="height: 30px; font-size: 14px;" class="text-uppercase text-end text-danger-emphasis">
-                            {{ $item->gia_san_pham }} VNĐ</div>
-                    </div>
-                    <div class="bg-light d-flex align-items-center justify-content-center overflow-hidden mt-0">
-                        <img src="{{ Storage::url($item->hinh_anh) }}" style="height:261px; width: 261px;"
-                            class="object-fit-cover" alt="">
-                    </div>
-                </div>
-                <div class="text-end">
-                    <a class="w-100" href="{{route('san_pham_chi_tiet', $item->id)}}">
-                        <button class="btn btn-dark w-50 btn-sm rounded-0 " style="height: 30px;">FIND OUT MORE</button>
-                    </a>
-                </div>
-            </div>
-        @endforeach
+
+    <!-- Don't Miss Section -->
+    <div class="container my-5">
+        <h1 class="text-center fw-bold mb-4">Don't Miss</h1>
+        <section class="banner_video">
+            <video class="w-100 rounded-3 shadow-sm" controls autoplay loop src="{{ asset('images/b.mp4') }}"></video>
+        </section>
     </div>
-    <hr class="hr">
-    <h1 class="fw-bold mt-3 d-flex align-items-center" style="height: 70px;">WHO ARE YOU SHOPPING FOR?</h1>
-    <section class="d-flex justify-content-between mb-5">
-        <div class="position-relative">
-            <img style="height: 358px;" src="{{ asset('images/Rectangle 8.png') }}" alt="">
-            <a href="{{route('nu')}}"><button style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
-                    class="position-absolute boder rounded-pill fw-bolder">Women's</button></a>
+
+    <!-- What's Hot Section -->
+    <div class="container my-5">
+        <h1 class="text-center fw-bold mb-4">What's Hot</h1>
+        <div class="row">
+            @foreach ($listSanPham as $item)
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <img src="{{ Storage::url($item->hinh_anh) }}" class="card-img-top img-fluid" alt="{{ $item->ten_san_pham }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->ten_san_pham }}</h5>
+                            <p class="card-text text-danger">{{ $item->gia_san_pham }} VNĐ</p>
+                            <a href="{{ route('san_pham_chi_tiet', $item->id) }}" class="btn btn-dark w-100">Find Out More</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="position-relative">
-            <img style="height: 358px;" src="{{ asset('images/Rectangle 9.png') }}" alt="">
-            <a href="{{route('nam')}}"><button style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
-                    class="position-absolute boder rounded-pill fw-bolder">Men's</button></a>
-        </div>
-        <div class="position-relative">
-            <img style="height: 358px;" src="{{ asset('images/Rectangle 10.png') }}" alt="">
-            <a href="{{route('tre_em')}}"><button
-                    style="top: 77%; left: 10%; font-size: 14px; width: 120px; height: 40px;"
-                    class="position-absolute boder rounded-pill fw-bolder">Kid's</button></a>
-        </div>
-    </section>
+    </div>
+
+    <!-- Who Are You Shopping For Section -->
+    <div class="container my-5">
+        <h1 class="text-center fw-bold mb-4">Who Are You Shopping For?</h1>
+        <section class="d-flex justify-content-between">
+            <div class="position-relative">
+                <img src="{{ asset('images/Rectangle 8.png') }}" class="img-fluid rounded-3" style="height: 358px;" alt="Women's">
+                <a href="{{ route('nu') }}" class="position-absolute top-50 start-50 translate-middle">
+                    <button class="btn btn-light fw-bold">Women's</button>
+                </a>
+            </div>
+            <div class="position-relative">
+                <img src="{{ asset('images/Rectangle 9.png') }}" class="img-fluid rounded-3" style="height: 358px;" alt="Men's">
+                <a href="{{ route('nam') }}" class="position-absolute top-50 start-50 translate-middle">
+                    <button class="btn btn-light fw-bold">Men's</button>
+                </a>
+            </div>
+            <div class="position-relative">
+                <img src="{{ asset('images/Rectangle 10.png') }}" class="img-fluid rounded-3" style="height: 358px;" alt="Kid's">
+                <a href="{{ route('tre_em') }}" class="position-absolute top-50 start-50 translate-middle">
+                    <button class="btn btn-light fw-bold">Kid's</button>
+                </a>
+            </div>
+        </section>
+    </div>
 @endsection
+
 @section('js')
     <script>
         function showImage(event) {

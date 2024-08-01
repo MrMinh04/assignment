@@ -36,10 +36,12 @@ class DanhMucController extends Controller
     {
         if ($request->isMethod('POST')) {
             $params = $request->except('_token');
-            $this->danh_mucs->createDanhMuc($params);
-            return redirect()->route('danh_muc.index')->with('success', 'Thêm sản phẩm thành công');
+            
+            DanhMuc::create($params);
+            return redirect()->route('danh_muc.index')->with('success', 'Thêm danh mục thành công');
         }
     }
+    
 
     /**
      * Display the specified resource.

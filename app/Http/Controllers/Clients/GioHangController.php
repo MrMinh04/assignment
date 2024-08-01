@@ -42,21 +42,34 @@ class GioHangController extends Controller
         $userId = auth()->user()->id; // Lấy ID người dùng hiện tại
         $san_pham_id = $request->input('san_pham_id');
         $so_luong = $request->input('so_luong');
-        // dd($san_pham_id);
-
+        
+        // Tìm giỏ hàng của người dùng hoặc tạo mới nếu không tồn tại
         $gioHang = GioHang::firstOrCreate(
             ['tai_khoan_id' => $userId],
             ['created_at' => now(), 'updated_at' => now()]
         );
-
-        ChiTietGioHang::create([
-            'gio_hang_id' => $gioHang->id,
-            'san_pham_id' => $san_pham_id,
-            'so_luong' => $so_luong,
-        ]);
-
-        return redirect()->route('gio_hang.index')->with('success', 'Thêm sản phẩm vào giỏ hàng thành công!');
+    
+        // Tìm chi tiết giỏ hàng của sản phẩm hiện tại
+        $chiTietGioHang = ChiTietGioHang::where('gio_hang_id', $gioHang->id)
+                                        ->where('san_pham_id', $san_pham_id)
+                                        ->first();
+    
+        if ($chiTietGioHang) {
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+            $chiTietGioHang->so_luong += $so_luong;
+            $chiTietGioHang->save();
+        } else {
+            // Nếu sản phẩm chưa tồn tại trong giỏ hàng, tạo mới
+            ChiTietGioHang::create([
+                'gio_hang_id' => $gioHang->id,
+                'san_pham_id' => $san_pham_id,
+                'so_luong' => $so_luong,
+            ]);
+        }
+    
+        return redirect()->route('gio_hang.index')->with('success', 'Cập nhật giỏ hàng thành công!');
     }
+    
 
     /**
      * Display the specified resource.
@@ -103,4 +116,5 @@ class GioHangController extends Controller
             return redirect()->route('gio_hang.index')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
         }
     }
+    
 }
