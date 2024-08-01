@@ -18,10 +18,11 @@ class GioHangController extends Controller
         $userId = auth()->user()->id;
         $gioHang = GioHang::with('chiTietGioHangs.san_pham')->where('tai_khoan_id', $userId)->first();
         if (!$gioHang) {
-            return view('clients.gio_hang', ['sanPhamGioHang' => []]);
+            return view('clients.gio_hang', ['sanPhamGioHang' => [], 'title' => $title]);
         }
         $sanPhamGioHang = $gioHang->chiTietGioHangs;
         // dd($sanPhamGioHang);
+        session(['sanPhamGioHang' => $sanPhamGioHang]);
         return view('clients.gio_hang', compact('title', 'sanPhamGioHang'));
     }
 
@@ -54,7 +55,7 @@ class GioHangController extends Controller
             'so_luong' => $so_luong,
         ]);
 
-        return redirect()->route('san_pham.index')->with('success', 'Thêm sản phầm thành công!');
+        return redirect()->route('gio_hang.index')->with('success', 'Thêm sản phẩm vào giỏ hàng thành công!');
     }
 
     /**

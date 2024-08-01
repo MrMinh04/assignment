@@ -46,8 +46,8 @@
         }
 
         .sanpham img {
-            width: 300px;
-            height: 300px;
+            width: 240px;
+            height: 240px;
         }
 
         .tt {
@@ -113,7 +113,7 @@
                         class="d-inline" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        <button type="submit" class="nav-link"><i style="font-size: 26px" class="fa-solid fa-delete-left"></i></button>
                     </form>  
                     @php
                         // Cập nhật tổng tiền cho mỗi sản phẩm
@@ -140,7 +140,7 @@
             <h4>Thành tiền sản phẩm: <b>{{ number_format($total) }} VND</b></h4><br>
             <h4>Phí vận chuyển: <b>MIỄN PHÍ</b></h4><br>
             <h4>Tổng cộng: <b>{{ number_format($total) }} VND</b></h4><br>
-            <a href=""><button class="checkout">Guest Checkout <i class='bx bxs-cart'></i></button></a>
+            <a href="{{route('don_hang.create')}}"><button class="checkout">Thanh toán <i class="fa-solid fa-cart-shopping"></i></button></a>
         </div>
     </div>
 @endsection
