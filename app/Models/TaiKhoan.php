@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TaiKhoan extends Model
 {
     use HasFactory;
-    protected $table = 'tai_khoans';
+    protected $table = 'users';
     protected $fillable = [
         'ho_ten',
         'anh_dai_dien',
@@ -21,4 +21,8 @@ class TaiKhoan extends Model
         'chuc_vu_id',
         'trang_thai',
     ];
+    public function binhLuans()
+    {
+        return $this->hasMany(BinhLuan::class, 'tai_khoan_id');
+    }
 }

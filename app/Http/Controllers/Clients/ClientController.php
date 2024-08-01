@@ -31,7 +31,7 @@ class ClientController extends Controller
     public function san_pham_chi_tiet(string $id){
         $title = "Chi tiết sản phẩm";
         $listSanPham = SanPham::where('danh_muc_id', 4)->get();
-        
+        $sanPham = SanPham::with('binhLuans')->findOrFail($id);
         // $sanPham = SanPham::with('hinh_anh_san_pham')->findOrFail($id);
         $sanPham = SanPham::with(['hinh_anh_san_pham' => function ($query) {
             $query->take(4); // Lấy 4 ảnh đầu tiên

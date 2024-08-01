@@ -42,4 +42,17 @@ public function hinh_anh_san_pham()
     public function hinhAnhSanPham(){
         return $this->hasMany(HinhAnhSanPham::class);
     }
+    public function sanPhams()
+    {
+        return $this->hasMany(SanPham::class, 'id_danhmuc');
+    }
+    public function binhLuans()
+    {
+        return $this->hasMany(BinhLuan::class, 'san_pham_id');
+    }
+    public function taiKhoan()
+    {
+        return $this->belongsTo(TaiKhoan::class, 'tai_khoan_id');
+    }
+    
 }
